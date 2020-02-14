@@ -1,12 +1,15 @@
 const express = require('express');
 
+const projectRouter = require('./data/helpers/projectRouter');
+const actionRouter = require('./data/helpers/actionRouter');
+
 const server = express();
 
 server.use(express.json());
 
 // Routes
-server.use()
-server.use()
+server.use('/api/projects', logger, projectRouter);
+server.use('/api/actions', logger, actionRouter);
 
 server.get('/', (req, res) => {
     res.send(
