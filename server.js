@@ -1,11 +1,14 @@
 const express = require('express');
 
+const cors = require("cors");
+
 const projectRouter = require('./data/helpers/projectRouter');
 const actionRouter = require('./data/helpers/actionRouter');
 
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
 // Routes
 server.use('/api/projects', logger, projectRouter);
