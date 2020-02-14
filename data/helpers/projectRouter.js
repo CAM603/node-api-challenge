@@ -20,12 +20,25 @@ router.get('/:id', (req, res) => {
     const {id} = req.params;
 
     Project.get(id)
-        .then(projects => {
-            res.status(200).json(projects)
+        .then(project => {
+            res.status(200).json(project)
         })
         .catch(err => {
             console.log(err)
             res.status(500).json({ error: 'Error retrieving project'})
+        })
+})
+
+router.get('/:id/actions', (req, res) => {
+    const {id} = req.params;
+
+    Project.getProjectActions(id)
+        .then(actions => {
+            res.status(200).json(actions)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: 'Error getting project actions'})
         })
 })
 
@@ -53,6 +66,19 @@ router.put('/:id', (req, res) => {
             res.status(500).json({ error: 'Error updating project'})
         })
 
+})
+
+router.delete('/:id', (req, res) => {
+    const {id} = req.params;
+
+    Project.remove(id)
+        .then(deleted => {
+            res.status(200).json(deleted)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: 'Error deleting project' })
+        })
 })
 
 module.exports = router;
