@@ -1,6 +1,7 @@
 const express = require('express');
 
 const Action = require('./actionModel');
+const Project = require('./projectModel');
 
 const router = express.Router();
 
@@ -29,15 +30,26 @@ router.get('/:id', (req, res) => {
         })
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
 
-    Action.insert(req.body)
-        .then(action => {
-            res.status(200).json(action)
+    Project.get(req.body.project_id)
+        .then(project => {
+            if(project) {
+                Action.insert(req.body)
+                .then(action => {
+                    res.status(200).json(action)
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.status(500).json({ error: 'Error adding action'})
+                })
+            } else {
+                res.status(400).json({ message: "invalid project id" })
+            }
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({ error: 'Error adding action'})
+            res.status(500).json({ error: 'Error finding project id'})
         })
 })
 
