@@ -29,4 +29,16 @@ router.get('/:id', (req, res) => {
         })
 })
 
+router.post('/', (req, res) => {
+
+    Action.insert(req.body)
+        .then(action => {
+            res.status(200).json(action)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: 'Error adding action'})
+        })
+})
+
 module.exports = router;
