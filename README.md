@@ -40,13 +40,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    Express is to Node as React is to vanilla JavaScript. Express allows us to easily build web applications and API servers. Two parts of Express I learned about were routing and middleware. Routing with Express allows us to map incoming requests to the appropriate request handler depending on the URL and HTTP Method used. I learned that most of the code in Express is middleware. The three types of middleware in Express are built in, third party, and custom middleware.
+
 - [ ] Describe Middleware?
+
+    Middleware allows us to add features to Express. They are functions that get executed in the order they are introduced into the server code. To use middleware we pass it into .use(). There are three types:
+        1. Built in: server.use(express.json()) adds support for parsing json content out of the request body.
+        2. Third Party: Npm modules we can install and import into the app with require(). An example would be cors middleware.
+        3. Custom middleware are functions we write.
 
 - [ ] Describe a Resource?
 
+    Everything is a resource, each accessible through a URI. The API returns a resource.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    A HTTP status code that reflects the outcome of the operation the client is trying to perform. A successful request will receive a status code of 200.
+
 - [ ] How can we partition our application into sub-applications?
+
+    We can user Express routers to split an app into sub-applications. We do this by separating the main server file from the files handling routes.
 
 ## Minimum Viable Product
 
